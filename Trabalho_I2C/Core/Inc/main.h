@@ -57,6 +57,20 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LCD_RST_Pin GPIO_PIN_0
+#define LCD_RST_GPIO_Port GPIOA
+#define LCD_CE_Pin GPIO_PIN_3
+#define LCD_CE_GPIO_Port GPIOA
+#define LCD_DC_Pin GPIO_PIN_4
+#define LCD_DC_GPIO_Port GPIOA
+#define Reset_contadores_Pin GPIO_PIN_15
+#define Reset_contadores_GPIO_Port GPIOA
+#define Contador_3_Pin GPIO_PIN_3
+#define Contador_3_GPIO_Port GPIOB
+#define Contador_2_Pin GPIO_PIN_4
+#define Contador_2_GPIO_Port GPIOB
+#define Contador_1_Pin GPIO_PIN_5
+#define Contador_1_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

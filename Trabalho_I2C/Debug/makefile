@@ -60,8 +60,8 @@ all: main-build
 main-build: Trabalho_I2C.elf secondary-outputs
 
 # Tool invocations
-Trabalho_I2C.elf Trabalho_I2C.map: $(OBJS) $(USER_OBJS) C:\Users\Martín\ Bernasconi\OneDrive\ -\ Associacao\ Antonio\ Vieira\Documentos\GitHub\Interfaceamento_e_Drivers\Trabalho_I2C\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Trabalho_I2C.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Martín Bernasconi\OneDrive - Associacao Antonio Vieira\Documentos\GitHub\Interfaceamento_e_Drivers\Trabalho_I2C\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Trabalho_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Trabalho_I2C.elf Trabalho_I2C.map: $(OBJS) $(USER_OBJS) C:\Interf_Drivers\Trabalho_I2C\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Trabalho_I2C.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Interf_Drivers\Trabalho_I2C\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Trabalho_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

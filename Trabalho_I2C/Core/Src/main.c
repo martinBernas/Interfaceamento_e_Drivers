@@ -58,6 +58,12 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+int flag_update = 0;
+int contador_1_mem 	= 0;
+int contador_2_mem 	= 0;
+int contador_3_mem 	= 0;
+int flag_reset 		= 0;
+
 
 /* USER CODE END 0 */
 
@@ -92,6 +98,8 @@ int main(void)
   MX_I2C1_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  LCD_Init();
+  ler_memoria();
 
   /* USER CODE END 2 */
 
@@ -102,7 +110,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  /* TESTE COMMIT MARTIN */
+	  if(flag_update > 0){
+		  atualiza_memoria();
+		  atualiza_tela();
+		  flag_update = 0;
+	  }
+	  if(flag_reset > 0){
+		  reseta_memoria();
+		  informa_reset_na_tela();
+	  }
   }
   /* USER CODE END 3 */
 }
@@ -241,19 +257,70 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin : Reset_contadores_Pin */
   GPIO_InitStruct.Pin = Reset_contadores_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(Reset_contadores_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : Contador_3_Pin Contador_2_Pin Contador_1_Pin */
   GPIO_InitStruct.Pin = Contador_3_Pin|Contador_2_Pin|Contador_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 
 /* USER CODE BEGIN 4 */
+HAL_GPIO_EXTI_Callback(GPIO_Pin){
+	if(GPIO_Pin == Contador_1_Pin)
+	{
+		flag_update++;
+		contador_1_mem++;
+	}
+	if(GPIO_Pin == Contador_2_Pin)
+	{
+		flag_update++;
+		contador_2_mem++;
+	}
+	if(GPIO_Pin == Contador_3_Pin)
+	{
+		flag_update++;
+		contador_3_mem++;
+	}
+	if(GPIO_Pin == Reset_contadores_Pin)
+	{
+		flag_reset++;
+		contador_1_mem = 0;
+		contador_2_mem = 0;
+		contador_3_mem = 0;
+	}
+}
+void ler_memoria(){
 
+}
+void atualiza_memoria(){
+
+}
+void atualiza_tela(){
+
+}
+void reseta_memoria(){
+
+}
+void informa_reset_na_tela(){
+
+}
 /* USER CODE END 4 */
 
 /**

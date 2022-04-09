@@ -65,12 +65,16 @@ void Error_Handler(void);
 #define LCD_DC_GPIO_Port GPIOA
 #define Reset_contadores_Pin GPIO_PIN_15
 #define Reset_contadores_GPIO_Port GPIOA
+#define Reset_contadores_EXTI_IRQn EXTI15_10_IRQn
 #define Contador_3_Pin GPIO_PIN_3
 #define Contador_3_GPIO_Port GPIOB
+#define Contador_3_EXTI_IRQn EXTI3_IRQn
 #define Contador_2_Pin GPIO_PIN_4
 #define Contador_2_GPIO_Port GPIOB
+#define Contador_2_EXTI_IRQn EXTI4_IRQn
 #define Contador_1_Pin GPIO_PIN_5
 #define Contador_1_GPIO_Port GPIOB
+#define Contador_1_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
